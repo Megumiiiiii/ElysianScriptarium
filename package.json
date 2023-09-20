@@ -1,0 +1,31 @@
+{
+  "name": "elysianscriptarium",
+  "version": "1",
+  "description": "ElysianScriptarium is a docs and blog on permaweb",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "deploy": "bundlr upload-dir ./out -h https://node2.bundlr.network --wallet ./wallet.json -c arweave --index-file index.html --no-confirmation",
+    "export": "next export",
+    "upload": "node record.mjs"
+  },
+  "dependencies": {
+    "@bundlr-network/client": "^0.11.17",
+    "arweave": "^1.14.4",
+    "fs": "^0.0.1-security",
+    "i18next": "^23.5.1",
+    "next": "^13.0.6",
+    "next-i18next": "^14.0.3",
+    "nextra": "latest",
+    "nextra-theme-docs": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^13.2.2",
+    "warp-contracts": "^1.4.18"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.10",
+    "typescript": "^4.9.3"
+  }
+}
