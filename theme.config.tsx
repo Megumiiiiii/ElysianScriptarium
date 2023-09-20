@@ -1,7 +1,20 @@
 import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
+import { useRouter } from 'next/router'
 
 const config: DocsThemeConfig = {
+  head: (
+    <>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta property="og:image" content="./ar.ico" />
+      <meta property="og:title" content="ElysianScriptarium" />
+      <meta property="og:description" content="ElysianScriptarium is what-" />
+    </>
+  ),
+  primaryHue: {
+    dark: 192,
+    light: 310
+   },
   logo: (
     <>
       <svg xmlns="http://www.w3.org/2000/svg" width="31.8" height="31.8" viewBox="0 0 50 50">
@@ -17,6 +30,14 @@ const config: DocsThemeConfig = {
       </span>
     </>
   ),
+  banner: {
+    key: '3.0-release',
+    text: (
+      <a href="https://arweave.org" target="_blank">
+        Learn more about Arweave →
+      </a>
+    )
+  },
   project: {
     link: 'https://github.com/Megumiiiiii/elysianscriptarium',
   },
