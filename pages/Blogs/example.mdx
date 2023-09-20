@@ -1,0 +1,31 @@
+---
+title: Contoh Kode, Entah Kode Apa
+---
+
+# Ini adalah contoh kode
+
+```js filename="demo.js" {3} copy
+import React from 'react';
+import CopyToClipboard from 'react-copy-to-clipboard';
+
+const CodeExample = () => {
+  const codeToCopy = `console.log('Hello, World!');`;
+  const [copied, setCopied] = React.useState(false);
+
+  const handleCopy = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div>
+      <pre>{codeToCopy}</pre>
+      <CopyToClipboard text={codeToCopy} onCopy={handleCopy}>
+        <button>Salin Kode</button>
+      </CopyToClipboard>
+      {copied && <div>Kode telah disalin!</div>}
+    </div>
+  );
+};
+
+<CodeExample />

@@ -39,25 +39,23 @@ Perlu modal token $AR sedikit, untuk biaya gas fee. $AR bisa beli di binance, at
 
 ## Install Docker dkk
 
-<code>
-```bash
+
+```sh filename="update system" copy
 sudo apt update; sudo apt upgrade -y
 ```
-</code>
 
 
 
-```bash
 
+```sh filename="install docker dkk" copy
 sudo apt-get update && sudo apt install jq git certbot nginx sqlite3 build-essential -y && sudo apt install apt-transport-https ca-certificates curl software-properties-common -y && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-
 ```
 
 ### Install Nodejs & Yarn
 
 #### Nodejs
 
-```bash
+```sh filename="Nodejs" copy
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 source ~/.bashrc
 nvm install 16.15.1
@@ -66,7 +64,7 @@ nvm use 16.15.1
 
 #### Yarn
 
-```bash
+```sh filename="Yarn" copy
 curl -sSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update -y
@@ -75,26 +73,26 @@ sudo apt-get install yarn -y
 
 ## Open Port
 
-```bash
+```sh filename="port" copy
 sudo ufw allow ssh; sudo ufw allow 80; sudo ufw allow 443; sudo ufw enable
 ```
 
 ## Clone AR Repo
 
-```bash
+```sh filename="clone" copy
 git clone https://github.com/ar-io/ar-io-node.git
 cd ~/ar-io-node
 ```
 
 ## Atur `.env`
 
-```bash
+```sh filename="edit env" copy
 nano .env
 ```
 
 - isi dengan ini, `domainmu.zzz` ganti dengan domainmu, `Password123` ganti dengan passwordmu, bebassss, `Address` ganti dengan wallet addressmu dari [ARConnect](https://chrome.google.com/webstore/detail/arconnect/einnioafmpimabjcddiinlhmijaionap)
 
-```ts
+```ts filename="isi .env" copy
 GRAPHQL_HOST=arweave.net
 GRAPHQL_PORT=443
 START_HEIGHT=1000000
@@ -117,7 +115,7 @@ AR_IO_WALLET=Address
 ## Atur SSL
 
 Ganti `EmailMU@gmail.com` dengan emailmu , seluruh `domainmu.zzz` dengan domain mu
-```bash
+```sh filename="certbot" copy
 sudo certbot certonly --manual --preferred-challenges dns --email EmailMu@gmail.com -d domainmu.zzz -d '*.domainmu.zzz'
 ```
 
@@ -137,14 +135,14 @@ sudo certbot certonly --manual --preferred-challenges dns --email EmailMu@gmail.
 
 ## Set Nginx
 
-```bash
+```sh filename="edit nginx" copy
 rm /etc/nginx/sites-available/default
 nano /etc/nginx/sites-available/default
 ```
 
 - isi dengan ini, ganti seluruh `domainmu.zzz` dengan domain mu
 
-```ts
+```sh filename="isi file default nginx" copy
 # Force redirects from HTTP to HTTPS
 server {
     listen 80;
@@ -179,13 +177,13 @@ server {
 
 #### Cek Nginx
 
-```bash
+```sh filename="cek stat nginx" copy
 sudo nginx -t
 ```
 
 #### Restart nginx dan cek ulang
 
-```bash
+```sh filename="restart + cek stat" copy
 sudo service nginx restart
 sudo nginx -t
 ```
@@ -197,7 +195,7 @@ sudo nginx -t
 
 ## Setup Node
 
-```bash
+```sh filename="compose up" copy
 cd ~/ar-io-node
 sudo docker compose up -d --build
 ```
@@ -219,26 +217,26 @@ http://IP.VPS.MU:3000/3lyxgbgEvqNSvJrTX2J7CfRychUD5KClFhhVLyTPNCQ
 
 ### Stop node
 
-```bash
+```sh filename="compose down" copy
 cd ~/ar-io-node
 sudo docker compose down
 ```
 
 ### Update repo
 
-```bash
+```sh filename="git pull" copy
 git pull
 ```
 
 ### Update image
 
-```bash
+```sh filename="compose pull" copy
 sudo docker compose pull
 ```
 
 ### Re-build
 
-```bash
+```sh filename="compose up" copy
 sudo docker compose up -d --build
 ```
 
@@ -256,17 +254,17 @@ sudo docker compose up -d --build
 
 ## Clone Repo Contract
 
-```bash
+```sh filename="clone" copy
 cd
 git clone https://github.com/ar-io/testnet-contract.git
 cd ~/testnet-contract
 ```
 
-```bash
+```sh filename="yarn install" copy
 yarn install
 ```
 
-```bash
+```sh filename="yarn buidl" copy
 yarn build
 ```
 
@@ -281,7 +279,7 @@ yarn build
 
 ## Edit file `join-network.ts`
 
-```bash
+```sh filename="edit join network" copy
 nano tools/join-network.ts
 ```
 
@@ -319,13 +317,13 @@ https://domainmu.zzz/UymRNCv22DbIB1KpAtC0qy5oeC1TdGDgoEKWs7J8Y_Q
 ## Last....
 
 - Jalankan command ini
-```bash
+```sh filename="join network" copy
 yarn ts-node tools/join-network.ts
 ```
 
 ## ⚠️ Jika ingin menghapus node ⚠️
 
-```bash
+```sh filename="DELETE" copy
 cd ~/ar-io-node
 docker compose down -v
 docker rmi ghcr.io/ar-io/ar-io-core ghcr.io/ar-io/ar-io-envoy
