@@ -1,14 +1,16 @@
 import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
-import { useRouter } from 'next/router'
 
 const config: DocsThemeConfig = {
   head: (
     <>
+      <link rel="icon" href="./favicon.ico" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta property="og:image" content="./ar.ico" />
+      <meta property="og:site_name" content="ElysianScriptarium" />
+      <title>ElysianScriptarium</title>
       <meta property="og:title" content="ElysianScriptarium" />
-      <meta property="og:description" content="ElysianScriptarium is what-" />
+      <meta name="description" content="ElysianScriptarium is permaweb." />
+      <meta property="og:description" content="ElysianScriptarium is permaweb." />
     </>
   ),
   primaryHue: {
@@ -31,10 +33,10 @@ const config: DocsThemeConfig = {
     </>
   ),
   banner: {
-    key: '3.0-release',
+    key: '1.0-release',
     text: (
       <a href="https://arweave.org" target="_blank">
-        Learn more about Arweave →
+        Built with 💜 by the Arweave community. Learn more about Arweave →
       </a>
     )
   },
@@ -46,7 +48,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/Megumiiiiii/elysianscriptarium',
   footer: {
-    text: 'Built with 💜 by the Arweave community.',
+    text: 'This is a permapage.',
   },
      
 }
