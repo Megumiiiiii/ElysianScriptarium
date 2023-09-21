@@ -1,1 +1,143 @@
-# Soon
+<div align="center">
+
+# Creditcoin
+
+[![Twitter](https://img.shields.io/twitter/follow/megumii?style=social)](https://twitter.com/megumii_tez)
+
+[![](https://img.shields.io/static/v1?label=Telegram&message=%E2%9D%A4&logo=Telegram&color=%23e609e6)](https://KatouMegumi.t.me)
+
+[![](https://img.shields.io/static/v1?label=Discord&message=%E2%9D%A4&logo=Discord&color=%23e609e6)](https://discordapp.com/users/873803230042263563)
+
+[![](https://komarev.com/ghpvc/?username=Megumiiiiii&color=e609e6&style=plastic&label=Visitors)]()
+
+</div>
+
+---
+
+## Official Links
+- [Docs](https://gluwa.gitbook.io/creditcoin-pos-testnet-documentation/validator-guides?ref=creditcoin.org)
+- [Discord](https://discord.gg/creditcoin)
+- [Twitter Gluwa](https://twitter.com/gluwa)
+- [Twitter Credit Coin](https://twitter.com/Creditcoin)
+- [Website Gluwa](https://gluwa.com)
+- [Website Credit Coin](https://creditcoin.org)
+
+#
+
+### Install Docker (Jika belum) & Open Port
+Port (Optional)
+
+```sh filename="Optional" copy
+ufw allow ssh; ufw allow 30333; ufw enable
+```
+Docker (Jika belum)
+
+```sh filename="update system" copy
+sudo apt update; sudo apt upgrade -y
+```
+
+```sh filename="install docker dkk" copy
+sudo apt-get update && sudo apt install jq git && sudo apt install apt-transport-https ca-certificates curl software-properties-common -y && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin && sudo apt-get install docker-compose-plugin
+```
+
+### RUN!
+>> Ganti `namaValidator` dengan nama mu dan `IP.VPS.MU` dengan IP VPS mu.
+
+```sh filename="RUN!" copy
+docker run -d \
+ --name ctc \
+ -p 30333:30333 \
+ -v credit:/creditcoin-node/data  \
+ gluwa/creditcoin:latest \
+ --name "namaValidator" \
+ --telemetry-url "wss://telemetry.creditcoin.network/submit/ 0" \
+ --public-addr "/dns4/IP.VPS.MU/tcp/30333" \
+ --chain main \
+ --bootnodes "/dns4/bootnode.creditcoin.network/tcp/30333/p2p/12D3KooWAEgDL126EUFxFfdQKiUhmx3BJPdszQHu9PsYsLCuavhb" "/dns4/bootnode2.creditcoin.network/tcp/30333/p2p/12D3KooWSQye3uN3bZQRRC4oZbpiAZXkP2o5UZh6S8pqyh24bF3k" "/dns4/bootnode3.creditcoin.network/tcp/30333/p2p/12D3KooWFrsEZ2aSfiigAxs6ir2kU6en4BewotyCXPhrJ7T1AzjN" \
+ --validator \
+ --base-path /creditcoin-node/data \
+ --port 30333
+```
+
+### Cek Logs
+
+```sh filename="logs" copy
+docker logs -f ctc
+```
+
+atau jika tidak ingin melihat logs terlalu banyak
+
+```sh filename="logs" copy
+docker logs ctc -f --since 10s
+```
+
+### Explorer
+
+[Telemetry](https://telemetry.creditcoin.network/#list/0xdd954cbf4000542ef1a15bca509cd89684330bee5e23766c527cdb0d7275e9c2)
+
+Jika namamu sudah ada disana = aman
+
+## Aktifkan Validator
+
+### Generate akun di vps atau gunakan akun testnetmu
+
+#### Skip jika menggunakan akun testnet, langsung [Stake](https://github.com/Megumiiiiii/credit-coin#stake) saja
+
+Generate 2 akun, lalu simpan pharse. Import ke [Subwallet](https://chrome.google.com/webstore/detail/subwallet-polkadot-wallet/onhogfjeacnfoofkfgppdlbmlmnplgbn)(extension)
+
+```sh filename="generate" copy
+docker exec -it ctc creditcoin-cli new
+```
+
+
+### Stake
+
+```sh filename="stake" copy
+docker exec -it ctc creditcoin-cli wizard -a 1000
+```
+`1000` bisa diganti berapapun, itu nominal yang akan di stake
+
+Untuk `stash` isi dengan pharse akun pertama, dan `controller` isi dengan pharse akun kedua
+
+Output yang benar:
+
+
+>🧙 Running staking wizard...
+>
+>Using the following parameters:
+>
+>💰 Stash account: 5CGBosx2Fw34u9jJtSgEQkoNTtHkPLKgsfjJiE3mDSWb44MW
+>
+>🕹️  Controller account: 5E1tpiU3SnunxwbtvTc7U7gykNYspTZu9yqTcch2pHamAvw5
+>
+>🪙  Amount to bond: 1000 CTC
+>
+>🎁 Reward destination: Staked
+>
+>📡 Node URL: ws://127.0.0.1:9945📡 Node URL: ws://127.0.0.1:9945
+>
+>💸 Commission: 0
+>
+>🔐 Blocked: No
+>
+>Continue? (y/n): y
+
+
+Sudah, selanjutnya cek disini [PolkadotJS](https://polkadot.js.org/apps/?rpc=wss://rpc.mainnet.creditcoin.network/ws#/staking) Connect ke Subwallet, jika ada addressmu, tinggal menunggu aktif.
+
+
+#### Command lain-lain
+
+```sh filename="laih" copy
+docker exec -it ctc creditcoin-cli --help
+```
+
+
+## ⚠️ Jika ingin menghapus node ⚠️
+
+```sh filename="DELETE" copy
+docker stop ctc; docker rm ctc
+docker rmi gluwa/creditcoin:latest
+```
+
+#
