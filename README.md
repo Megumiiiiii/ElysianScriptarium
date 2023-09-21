@@ -1,5 +1,20 @@
-## Local Development
 
-First, run `yarn` to install the dependencies.
+---
 
-Then, run `yarn dev` to start the development server and visit localhost:3000.
+<div align="center">
+
+<a href="https://megumii.blessingway.xyz"><img src="https://raw.githubusercontent.com/Megumiiiiii/Megumiiiiii/main/followpoint-60%20-%20Copy%20-%20Copy%20-%20Copy%20-%20Copy.png" alt="web" width="68" height="68" /></a>
+
+[![Twitter](https://img.shields.io/twitter/follow/megumii?style=social)](https://twitter.com/megumii_tez)
+
+[![](https://img.shields.io/static/v1?label=Telegram&message=%E2%9D%A4&logo=Telegram&color=%23e609e6)](https://KatouMegumi.t.me)
+
+[![](https://img.shields.io/static/v1?label=Discord&message=%E2%9D%A4&logo=Discord&color=%23e609e6)](https://discordapp.com/users/873803230042263563)
+
+[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23e609e6)](https://github.com/sponsors/Megumiiiiii)
+
+[![](https://komarev.com/ghpvc/?username=Megumiiiiii&color=e609e6&style=plastic&label=Visitors)]()
+
+</div>
+
+---
