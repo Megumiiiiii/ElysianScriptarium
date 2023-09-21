@@ -3,4 +3,6 @@ node_modules
 wallet.json
 record.mjs
 out
-
+out-id.txt
+out-manifest.csv
+out-manifest.json
