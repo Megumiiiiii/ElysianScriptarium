@@ -1,0 +1,128 @@
+<div align="center">
+
+# QUAI Slice Node
+
+[![Twitter](https://img.shields.io/twitter/follow/megumii?style=social)](https://twitter.com/megumii_tez)
+
+[![](https://img.shields.io/static/v1?label=Telegram&message=%E2%9D%A4&logo=Telegram&color=%23e609e6)](https://KatouMegumi.t.me)
+
+[![](https://img.shields.io/static/v1?label=Discord&message=%E2%9D%A4&logo=Discord&color=%23e609e6)](https://discordapp.com/users/873803230042263563)
+
+[![](https://komarev.com/ghpvc/?username=Megumiiiiii&color=e609e6&style=plastic&label=Visitors)]()
+
+</div>
+
+---
+
+## Official Links
+- [Docs](https://docs.quai.network/node/node-overview/run-a-node)
+- [Discord](https://discord.gg/quai/)
+- [Twitter](https://twitter.com/QuaiNetwork)
+- [Explorer](https://cyprus1.colosseum.quaiscan.io/)
+- [Faucet](https://faucet.quai.network/)
+
+---
+
+## Spek Minimal
+
+| Spek | Ukuran |
+|----------|----------|
+| CPU | 4 |
+| RAM | 16 GB |
+| SSD | 1 TB |
+| Bandwith | 10 Mbps |
+
+---
+
+### Download Extension wallet
+
+- [DISINI](https://chrome.google.com/webstore/detail/pelagus/gaegollnpijhedifeeeepdoffkgfcmbc)
+atau
+- [DISINI](https://chrome.google.com/webstore/detail/koala-wallet/lnnnmfcpbkafcpgdilckhmhbkkbpkmid/related)
+
+## Install Go Git Make
+
+```sh filename="update system" copy
+sudo apt update; sudo apt upgrade -y
+```
+
+```sh filename="cara mudah install Go, thanks KJ" copy
+sudo rm -rf /usr/local/go
+curl -Ls https://go.dev/dl/go1.19.12.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
+eval $(echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/golang.sh)
+eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
+```
+
+```sh filename="update system" copy
+sudo apt install git make
+```
+
+## Clone repo
+
+```sh filename="clone" copy
+git clone https://github.com/dominant-strategies/go-quai
+cd go-quai
+```
+
+```sh filename="checkout" copy
+git checkout v0.18.1
+```
+
+
+
+### Set env
+
+```sh filename="env" copy
+cp network.env.dist network.env
+```
+
+```sh filename="env" copy
+nano network.env
+```
+
+- isi bagian `ZONE_0_0_COINBASE` sampai `ZONE_2_2_COINBASE`, setiap bagian harus berbeda. Jadi buatlah 0 wallet dan beri nama 0_0 sampai 2_2 agar mudah diingat
+- [![](https://nlecg2zmigzzmgu2ycppuogzg76xrrzzhz6v7ijginxfsc4eo7rq.arweave.net/asgjayxBs5YamsCe-jjZN_14xzk-fV-hJkNuWQuEd-M)]()
+- Pada bagain `SLICES` isi dengan berapa zone yang ingin dijalankan. 2 cukup, lebih gpp. Contoh ↓ ↓ ↓
+- [![](https://d5mcka6uo774qh3wbcjvqurwyiry3akaaspq2qtdt7joku23ndzq.arweave.net/H1glA9R3_8gfdgiTWFI2wiONgUAEnw1CY5_S5VNbaPM)]()
+- Lalu open Port untuk masing-masing zone, TCP HTTP WS buka semua. Daftar port bisa lihat disana ↓ ↓ ↓
+- [![](https://eishul5m2oiqrfdlkfcgkwi2n473l2r3ad5sd72htcd6cll27fsq.arweave.net/IiR6L6zTkQiUa1FEZVkabz-16jsA-yH_R5iH4S16-WU)]()
+- Save, `CTRL+X` `Y` `Enter`
+
+## Build
+- Build
+
+```sh filename="make" copy
+make go-quai
+```
+
+- Run 
+
+```sh filename="run" copy
+make run
+```
+
+## Logs
+
+Cek logs dari masing-masing zona yang dijalankan, misal 2-2
+
+```sh filename="logs 2-2" copy
+tail -f nodelogs/zone-2-2.log
+```
+
+- Output
+
+```jsx filename="output" 
+INFO [01-30|19:55:15.397] Starting Quai 0.1.0-pre.0 on local testnet 
+INFO [01-30|19:55:15.414] Maximum peer count                       ETH=50 total=50
+WARN [01-30|19:55:15.460] Disable transaction unindexing for archive node 
+INFO [01-30|19:55:15.460] Enabling recording of key preimages since archive mode is used 
+INFO [01-30|19:55:15.460] Set global gas cap                       cap=50,000,000
+INFO [01-30|19:55:15.460] Allocated trie memory caches             clean=307.00MiB dirty=0.00B
+INFO [01-30|19:55:15.461] Allocated cache and file handles         database=/Users/user/Library/Quai/local/zone-0-0/quai/chaindata cache=512.00MiB handles=5120
+INFO [01-30|19:55:17.727] Opened ancient database                  database=/Users/user/Library/Quai/local/zone-0-0/quai/chaindata/ancient readonly=false
+INFO [01-30|19:55:17.728] Writing custom genesis block
+```
+
+#
+
+

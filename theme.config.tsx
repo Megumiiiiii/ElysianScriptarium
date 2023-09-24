@@ -14,7 +14,7 @@ const config: DocsThemeConfig = {
     </>
   ),
   primaryHue: {
-    dark: 192,
+    dark: 310,
     light: 310
    },
   logo: (
