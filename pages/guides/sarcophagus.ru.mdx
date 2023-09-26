@@ -1,0 +1,230 @@
+<div align="center">
+
+# Саркофаг
+
+[![Twitter](https://img.shields.io/twitter/follow/megumii?style=social)](https://twitter.com/megumii_tez)
+
+[![](https://img.shields.io/static/v1?label=Telegram&message=%E2%9D%A4&logo=Telegram&color=%23e609e6)](https://KatouMegumi.t.me)
+
+[![](https://img.shields.io/static/v1?label=Discord&message=%E2%9D%A4&logo=Discord&color=%23e609e6)](https://discordapp.com/users/873803230042263563)
+
+[![](https://komarev.com/ghpvc/?username=Megumiiiiii&color=e609e6&style=plastic&label=Visitors)]()
+
+</div>
+
+---
+
+![image](https://user-images.githubusercontent.com/98658943/214569281-4d9d3e0e-f1c5-4933-8559-07576ef885d7.png)
+
+## Минимальные Требования
+> 10 ГБ SSD
+> 1 ГБ ОЗУ
+
+## Домен
+Для этой настройки вам понадобится личный домен, такой как .com, .net, .id и так далее. Вы можете приобрести его на Namecheap, Niagahoster, Contabo или где угодно.
+
+### После покупки
+- Войдите в управление доменом (здесь используется Niagahoster).
+- Добавьте DNS-запись.
+- ![image](https://user-images.githubusercontent.com/98658943/214573355-e3f22b37-639c-4824-9024-11db2b05f96b.jpg)
+  
+- Выберите *A*.
+- ![image](https://user-images.githubusercontent.com/98658943/214574697-114cc2de-bb50-4ef0-885f-2bb0d6c37c8f.jpg)
+  
+- Введите имя и IP VPS.
+- ![image](https://user-images.githubusercontent.com/98658943/214574980-6d5b2864-a0e7-46c6-b6bf-66edf3e027bd.jpg)
+  
+- Сохраните
+  
+## Установка всех необходимых компонентов
+```sh filename="обновление системы" copy
+sudo apt update; sudo apt upgrade
+```
+```sh filename="установка Docker и др." copy
+sudo apt-get update && sudo apt install jq git && sudo apt install apt-transport-https ca-certificates curl software-properties-common -y && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+## Открытие портов
+```sh filename="порты" copy
+sudo ufw allow ssh; sudo ufw allow 443/tcp; sudo ufw allow 80/tcp; sudo ufw enable
+```
+
+## Клонирование репозитория
+```sh filename="клонирование" copy
+git clone https://github.com/sarcophagus-org/quickstart-archaeologist
+cd quickstart-archaeologist
+```
+	
+## Начало
+### Создание файла `.env`
+```sh filename="создание .env" copy
+cp .env.example .env
+```
+
+### Генерация мнемонической фразы
+```sh filename="генерация новой фразы" copy
+COMPOSE_PROFILES=seed docker compose run seed-gen
+```
+*Резервное копирование*
+
+#### Или продолжите, используя фразу из тестовой сети
+
+### Создание пустого файла peer ID
+
+```sh filename="создание peer-id" copy
+touch peer-id.json
+```
+
+Если у вас все еще есть peer-ID из тестовой сети, сначала удалите его.
+
+```sh filename="удаление старого peer-id" copy
+rm peer-id.json
+```
+
+
+### Редактирование файла .env
+```sh filename="редактирование .env" copy
+nano .env
+```
+Заполните его вашими данными.
+- ![image](https://user-images.githubusercontent.com/98658943/214577366-9b373fe5-d2c5-4d78-b86e-9038a2dea585.png)
+
+Чтобы получить закрытый ключ, вы можете импортировать мнемоническую фразу в Metamask и затем просмотреть закрытый ключ оттуда. А для RPC-поставщика вы можете использовать Alchemy, создайте приложение на Mainnet и возьмите оттуда RPC-URL.
+- ![image](https://github.com/Megumiiiiii/Sarcophagus/assets/98658943/0e9ac62c-9bf2-4b38-a3bb-5296085fa98c)
+
+
+## Токен Sacro
+- Чтобы получить токен, вы можете совершить обмен на Uniswap.
+- Перейдите на https://app.uniswap.org/
+- Или получите вознаграждение от тестовой сети, достаточно 1000 SARCO.
+- SC Sarco: `0x7697B462A7c4Ff5F8b55BDBC2F4076c2aF9cF51A`
+
+## Регистрация
+```sh filename="регистрация" copy
+COMPOSE_PROFILES=register docker compose run register
+```
+Y, Enter
+
+### Затем введите сумму (DiggingFee 100 - 500, CurseFee 300 и FreeBond 1000 )
+- ![image](https://github.com/Megumiiiiii/Sarcophagus/assets/98658943/cce8c4a4-3515-4861-8329-8ea0a451e699)
+
+
+
+## После завершения регистрации
+
+#### Запустите узел
+```sh filename="
+
+запуск" copy
+COMPOSE_PROFILES=service docker compose up -d
+```
+
+# ГОТОВО
+
+## Команды
+
+### Проверьте, работает ли ваш узел
+```sh filename="проверка списка контейнеров" copy
+docker container ls
+```
+Скопируйте ID из контейнера с сервисом.
+- ![image](https://user-images.githubusercontent.com/98658943/214582956-e20e6a96-9bd0-4cfc-9244-9b6a038bf882.png)
+
+Затем выполните следующую команду, чтобы проверить журналы.
+```sh filename="просмотр журналов" copy
+docker logs -f ID_контейнера
+```
+Правильным выводом будет следующее:
+- ![image](https://user-images.githubusercontent.com/98658943/215103568-73db76de-ec4f-484e-9325-fc8a23ffb9d2.png)
+	
+
+### Если в будущем появится обновление
+```sh filename="шаги обновления" copy
+cd ~/quickstart-archaeologist
+COMPOSE_PROFILES=service docker compose stop
+COMPOSE_PROFILES=service docker compose pull
+COMPOSE_PROFILES=service docker compose up -d
+```
+### Перезапустите узел (если необходимо перезапустить)
+```sh filename="перезапуск" copy
+COMPOSE_PROFILES=service docker compose stop
+COMPOSE_PROFILES=service docker compose up -d
+```
+
+### Если вы изменили домен после регистрации
+
+- Обновите Archaeologist с депозитом 1 Sacro
+```sh filename="добавление 1 freebond" copy
+docker compose exec -it archaeologist sh
+cli update -f 1
+```
+```sh filename="выход из CLI" copy
+exit
+```
+
+- Затем перезапустите
+```sh filename="перезапуск" copy
+COMPOSE_PROFILES=service docker compose restart
+```
+
+
+## CLI (Интерфейс командной строки)
+#### Обновите Digging Fee до 300
+```sh filename="обновление Digging Fee" copy
+docker compose exec -it archaeologist sh
+cli update -d 300
+```
+```sh filename="выход из CLI" copy
+exit
+```
+300 можно изменить на любое значение.
+
+#### Добавьте Free Bond 100
+```sh filename="обновление Free Bond" copy
+docker compose exec -it archaeologist sh
+cli update -f 100
+```
+```sh filename="выход из CLI" copy
+exit
+```
+100 можно изменить.
+
+#### Просмотр профиля
+```sh filename="просмотр профиля" copy
+docker compose exec -it archaeologist sh
+cli view -p
+```
+```sh filename="выход из CLI" copy
+exit
+```
+
+#### Заберите награды
+```sh filename="заберите награды" copy
+docker compose exec -it archaeologist sh
+cli claim
+```
+```sh filename="выход из CLI" copy
+exit
+```
+
+#### Выведите 10 из Free Bond
+```sh filename="вывод 10 из Free Bond" copy
+docker compose exec -it archaeologist sh
+cli free-bond -w 10
+```
+```sh filename="выход из CLI" copy
+exit
+```
+	
+### Проверьте домен
+Введите свое доменное имя здесь https://www.nslookup.io/website-to-ip-lookup . Если оно совпадает с IP VPS, значит все правильно.
+
+## ⚠️ Если вы хотите удалить узел ⚠️
+
+```sh filename="УДАЛИТЬ" copy
+cd ~/quickstart-archaeologist
+COMPOSE_PROFILES=service docker compose down -v
+docker rmi jwilder/nginx-proxy nginxproxy/acme-companion ghcr.io/sarcophagus-org/sarcophagus-v2-archaeologist-service
+```
+
+#

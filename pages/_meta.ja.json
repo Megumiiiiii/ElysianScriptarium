@@ -1,0 +1,14 @@
+{
+  "index": "ようこそ", 
+  "Blogs": "ブログ",
+  "about": {
+    "title": "紹介", 
+    "type": "page" 
+  },
+  "contact": {
+    "title": "お問い合わせ ↗", 
+    "type": "page", 
+    "href": "https://KatouMegumii.t.me",
+    "newWindow": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "index": "欢迎",
+  "Guides": "指南",
+  "Blogs": "博客",
+  "about": {
+    "title": "关于",
+    "type": "page"
+  },
+  "contact": {
+    "title": "联系 ↗",
+    "type": "page",
+    "href": "https://KatouMegumii.t.me",
+    "newWindow": true
+  }
+}

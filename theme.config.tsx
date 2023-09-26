@@ -14,8 +14,8 @@ const config: DocsThemeConfig = {
     </>
   ),
   primaryHue: {
-    dark: 310,
-    light: 310
+    dark: 187,
+    light: 187
    },
   logo: (
     <>
@@ -40,6 +40,13 @@ const config: DocsThemeConfig = {
       </a>
     )
   },
+  i18n: [
+    { locale: 'en', text: 'English' },
+    { locale: 'id', text: 'Bahasa' },
+    { locale: 'ru', text: 'Русский' },
+    { locale: 'ja', text: '日本語' },
+    { locale: 'zh', text: '中文' }
+  ],
   project: {
     link: 'https://github.com/Megumiiiiii/elysianscriptarium',
   },

@@ -1,0 +1,15 @@
+{
+  "index": "Добро пожаловать",
+  "Guides": "Руководства",
+  "Blogs": "Блоги",
+  "about": {
+    "title": "О нас",
+    "type": "page"
+  },
+  "contact": {
+    "title": "Связаться ↗",
+    "type": "page",
+    "href": "https://KatouMegumii.t.me",
+    "newWindow": true
+  }
+}
