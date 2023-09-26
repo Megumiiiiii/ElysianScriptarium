@@ -1,6 +1,7 @@
 {
-  "index": "ようこそ", 
-  "Blogs": "ブログ",
+  "index": "ようこそ",
+  "guides": "ガイド", 
+  "blogs": "ブログ",
   "about": {
     "title": "紹介", 
     "type": "page" 

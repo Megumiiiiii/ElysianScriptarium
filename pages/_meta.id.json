@@ -1,7 +1,7 @@
 {
   "index": "Welcome",
-  "Guides": "Guides",
-  "Blogs": "Blogs",
+  "guides": "Guides",
+  "blogs": "Blogs",
   "about": {
     "title": "About",
     "type": "page"
