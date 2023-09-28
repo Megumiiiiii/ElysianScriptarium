@@ -259,6 +259,8 @@ sudo docker compose up -d --build
 cd
 git clone https://github.com/ar-io/testnet-contract.git
 cd ~/testnet-contract
+git checkout -b develop origin/develop
+git checkout develop
 ```
 
 ```sh filename="yarn 安装" copy
@@ -277,6 +279,18 @@ yarn build
 - 将文件 `key.json` 移动到 VPS 并移动到目录 `/testnet-contract`
 ![Screenshot_39](https://github.com/Megumiiiiii/ar-node/assets/98658943/ce246183-49b6-400c-91c0-71b5780d9fcc)
 
+### 创建 `.env` 文件
+
+```sh filename="env" copy
+nano .env
+```
+
+- 填写如下内容
+**JWK** 是您的 `key.json` 文件的内容，但要编辑为仅1行
+```sh filename="env" copy
+JWK=
+ARNS_CONTRACT_TX_ID=bLAgYxAdX2Ry-nt6aH2ixgvJXbpsEYm28NgJgyqfs-U
+```
 
 ## 编辑文件 `join-network.ts`
 

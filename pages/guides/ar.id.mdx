@@ -259,6 +259,8 @@ sudo docker compose up -d --build
 cd
 git clone https://github.com/ar-io/testnet-contract.git
 cd ~/testnet-contract
+git checkout -b develop origin/develop
+git checkout develop
 ```
 
 ```sh filename="yarn install" copy
@@ -277,6 +279,18 @@ yarn build
 -  Pindahkan file `key.json` ke VPS dan pindah ke directory `/testnet-contract`
 ![Screenshot_39](https://github.com/Megumiiiiii/ar-node/assets/98658943/ce246183-49b6-400c-91c0-71b5780d9fcc)
 
+### Buat Berkas `.env`
+
+```sh filename="env" copy
+nano .env
+```
+
+- Isi dengan ini
+**JWK** adalah isi dari berkas `key.json` Anda, tetapi sunting menjadi hanya 1 baris
+```sh filename="env" copy
+JWK=
+ARNS_CONTRACT_TX_ID=bLAgYxAdX2Ry-nt6aH2ixgvJXbpsEYm28NgJgyqfs-U
+```
 
 ## Edit file `join-network.ts`
 

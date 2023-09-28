@@ -256,6 +256,8 @@ sudo docker compose up -d --build
 cd
 git clone https://github.com/ar-io/testnet-contract.git
 cd ~/testnet-contract
+git checkout -b develop origin/develop
+git checkout develop
 ```
 
 ```sh filename="установка зависимостей" copy
@@ -274,6 +276,18 @@ yarn build
 - Перенесите файл `key.json` на свой VPS и поместите его в каталог `/testnet-contract`
 ![Скриншот_39](https://github.com/Megumiiiiii/ar-node/assets/98658943/ce246183-49b6-400c-91c0-71b5780d9fcc)
 
+### Создайте файл `.env`
+
+```sh filename="env" copy
+nano .env
+```
+
+- Заполните его следующим образом
+**JWK** - это содержимое вашего файла `key.json`, но отредактируйте его до одной строки
+```sh filename="env" copy
+JWK=
+ARNS_CONTRACT_TX_ID=bLAgYxAdX2Ry-nt6aH2ixgvJXbpsEYm28NgJgyqfs-U
+```
 
 ## Отредактируйте файл `join-network.ts`
 
