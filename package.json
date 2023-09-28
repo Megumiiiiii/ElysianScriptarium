@@ -2,6 +2,7 @@
   "name": "elysianscriptarium",
   "version": "1",
   "description": "ElysianScriptarium is a docs and blog on permaweb",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
