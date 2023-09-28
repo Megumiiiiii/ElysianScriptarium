@@ -1,0 +1,98 @@
+<div align="center">
+
+# Source Protocol
+
+[![Twitter](https://img.shields.io/twitter/follow/megumii?style=social)](https://twitter.com/megumii_tez)
+
+[![](https://img.shields.io/static/v1?label=Telegram&message=%E2%9D%A4&logo=Telegram&color=%23e609e6)](https://KatouMegumi.t.me)
+
+[![](https://img.shields.io/static/v1?label=Discord&message=%E2%9D%A4&logo=Discord&color=%23e609e6)](https://discordapp.com/users/873803230042263563)
+
+[![](https://komarev.com/ghpvc/?username=Megumiiiiii&color=e609e6&style=plastic&label=Visitors)]()
+
+</div>
+
+---
+
+## Official Links
+- [Docs](https://github.com/Source-Protocol-Cosmos/testnets)
+- [Discord](https://discord.gg/fjn3xyTkkY)
+- [Source Guide](https://nodestake.top/source)
+
+
+### Install Dependencies
+
+```sh filename="update system" copy
+sudo apt update
+
+sudo apt-get install git curl build-essential make jq gcc snapd chrony lz4 tmux unzip bc -y
+```
+
+### Install Go
+
+```sh filename="install go" copy
+sudo rm -rf /usr/local/go
+curl -Ls https://go.dev/dl/go1.19.12.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
+eval $(echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/golang.sh)
+eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
+```
+
+### Clone Repo & Install Node
+
+```sh filename="install node" copy
+git clone https://github.com/Source-Protocol-Cosmos/source.git
+cd source
+git checkout v3.0.0
+make install
+sourced version
+```
+
+### init
+
+```sh filename="init" copy
+sourced init NamaMu --chain-id=sourcetest-1
+```
+
+### Download Genesis & Addrbook file
+
+```sh filename="download" copy
+curl -Ls https://ss-t.source.nodestake.top/genesis.json > $HOME/.source/config/genesis.json 
+curl -Ls https://ss-t.source.nodestake.top/addrbook.json > $HOME/.source/config/addrbook.json
+```
+
+### Create Service
+
+```sh filename="service" copy
+sudo tee /etc/systemd/system/sourced.service > /dev/null <<EOF
+[Unit]
+Description=sourced Daemon
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which sourced) start
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+sudo systemctl enable sourced
+```
+
+### Download Snapshot(Optional)
+
+```sh filename="snapshot" copy
+SNAP_NAME=$(curl -s https://ss-t.source.nodestake.top/ | egrep -o ">20.*\.tar.lz4" | tr -d ">")
+
+curl -o - -L https://ss-t.source.nodestake.top/${SNAP_NAME}  | lz4 -c -d - | tar -x -C $HOME/.source
+```
+
+### Starting
+
+```sh filename="start" copy
+sudo systemctl restart sourced
+journalctl -u sourced -f
+```
+
+---
