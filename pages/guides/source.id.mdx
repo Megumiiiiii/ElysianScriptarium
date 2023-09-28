@@ -98,8 +98,52 @@ curl -o - -L https://ss-t.source.nodestake.top/${SNAP_NAME}  | lz4 -c -d - | tar
 ### Starting
 
 ```sh filename="start" copy
+sourced  config keyring-backend test
 sudo systemctl restart sourced
 sudo journalctl -u sourced -f --no-hostname -o cat
+```
+
+### Add Wallet
+
+```sh filename="wallet" copy
+sourced keys add wallet
+```
+**BACKUP!!!***
+
+### Create Gentx
+
+```sh filename="genesis account" copy
+sourced add-genesis-account $(sourced keys show wallet -a) 10000000000usource
+```
+
+```sh filename="gentx" copy
+sourced gentx wallet 9000000000usource --chain-id=sourcetest-1
+```
+
+- File akan tersimpan di direcotry
+```
+/root/.source/config/gentx/gentx-96fd13daasd4gw4wg3c6b056fc0.json
+```
+
+- Submit PR
+
+https://github.com/Source-Protocol-Cosmos/testnets/pulls
+
+### Create Validator
+
+```sh filename="create validator" copy
+sourced tx staking create-validator \
+    --amount="300000000usource" \
+    --pubkey=$(sourced tendermint show-validator) \
+    --moniker="NamaMU" \
+    --chain-id sourcetest-1 \
+    --commission-rate="0.10" \
+    --commission-max-rate="0.20" \
+    --commission-max-change-rate="0.01" \
+    --min-self-delegation="1" \
+    --details "DETAILS" \
+    --gas-prices 0.025usource \
+    --from=wallet
 ```
 
 ---
