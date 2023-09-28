@@ -92,7 +92,7 @@ curl -o - -L https://ss-t.source.nodestake.top/${SNAP_NAME}  | lz4 -c -d - | tar
 
 ```sh filename="start" copy
 sudo systemctl restart sourced
-journalctl -u sourced -f
+sudo journalctl -u sourced -f --no-hostname -o cat
 ```
 
 ---
